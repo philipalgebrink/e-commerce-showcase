@@ -13,13 +13,13 @@
 
       <div class="icons">
         <button aria-label="Search">
-          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg class="icon" viewBox="0 0 24 24">
+            <path :d="mdiMagnify" />
           </svg>
         </button>
         <button aria-label="Cart">
-          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          <svg class="icon" viewBox="0 0 24 24">
+            <path :d="mdiCartHeart" />
           </svg>
         </button>
       </div>
@@ -28,35 +28,35 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import logoSrc from '@/assets/logo.png'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import logoSrc from '@/assets/logo.png';
+import { mdiMagnify, mdiCartHeart } from '@mdi/js';
 
-const isNavbarVisible = ref(false)
-const scrollPosition = ref(0)
-const isAtTop = ref(false)
+const isNavbarVisible = ref(false);
+const scrollPosition = ref(0);
+const isAtTop = ref(false);
 
 const handleScroll = () => {
-  scrollPosition.value = window.scrollY
-  const scrollThreshold = 350
+  scrollPosition.value = window.scrollY;
+  const scrollThreshold = 350;
 
-  isNavbarVisible.value = scrollPosition.value > scrollThreshold
-  isAtTop.value = scrollPosition.value > scrollThreshold
-}
+  isNavbarVisible.value = scrollPosition.value > scrollThreshold;
+  isAtTop.value = scrollPosition.value > scrollThreshold;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+  window.addEventListener('scroll', handleScroll);
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener('scroll', handleScroll);
+});
 
-defineExpose({ isAtTop })
+defineExpose({ isAtTop });
 </script>
 
 <style scoped>
 .navbar {
-  background-color: black;
   color: white;
   position: fixed;
   top: 0;
@@ -121,8 +121,17 @@ defineExpose({ isAtTop })
   gap: 1rem;
 }
 
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
 .icon {
   width: 1.5rem;
   height: 1.5rem;
+  fill: white;
 }
 </style>
