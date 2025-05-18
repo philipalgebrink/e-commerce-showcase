@@ -23,15 +23,23 @@ onMounted(async () => {
 <style scoped>
 .content {
   padding: 2rem;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   min-height: 100vh;
+  text-align: center;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  margin: 2rem 0;
 }
 
 .product-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 70%;
   gap: 2rem;
-  margin-top: 2rem;
+  margin: 0 auto;
 }
+
 </style>
