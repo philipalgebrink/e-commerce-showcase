@@ -1,13 +1,16 @@
+<!-- components/ProductCard.vue -->
 <template>
   <div class="product">
-    <img :src="product.imageUrl || placeholderImage" :alt="product.name" class="product-image" />
+    <img :src="product.imageUrls?.[0]" :alt="product.name" class="product-image" @error="handleImageError" />
     <div class="product-info">
       <div>
-      <h2>{{ product.name }}</h2>
-      <p class="price">{{ product.price }} {{ product.currency }}</p>
+        <h2>{{ product.name }}</h2>
+        <p class="price">{{ product.price }} {{ product.currency }}</p>
       </div>
       <div class="buy">
-        <button @click="$emit('view-product', product)">View Product</button>
+        <NuxtLink :to="`/products/${product.id}`">
+          <button>View Product</button>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -21,6 +24,12 @@ defineProps<{
 }>();
 
 const placeholderImage = 'https://via.placeholder.com/150';
+
+const handleImageError = (event: Event) => {
+  const target = event.target as HTMLImageElement;
+  target.src = placeholderImage;
+  target.alt = 'Image not found';
+};
 </script>
 
 <style scoped>
@@ -48,7 +57,7 @@ const placeholderImage = 'https://via.placeholder.com/150';
 }
 
 .buy button {
-  background: linear-gradient(90deg,rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
+  background: linear-gradient(90deg, rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
@@ -63,14 +72,14 @@ const placeholderImage = 'https://via.placeholder.com/150';
 
 .buy button:hover,
 .buy button:focus {
-  background: linear-gradient(90deg,rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
+  background: linear-gradient(90deg, rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 4px 16px rgba(255, 87, 34, 0.18);
 }
 
 .buy button:active {
   transform: scale(0.98);
-  background: linear-gradient(90deg,rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
+  background: linear-gradient(90deg, rgb(129, 129, 129) 0%, rgb(44, 44, 44) 100%);
 }
 
 .product h2 {
@@ -81,5 +90,4 @@ const placeholderImage = 'https://via.placeholder.com/150';
 .price {
   font-weight: bold;
 }
-
 </style>
