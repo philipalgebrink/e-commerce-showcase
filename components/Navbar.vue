@@ -17,11 +17,13 @@
             <path :d="mdiMagnify" />
           </svg>
         </button>
+        <NuxtLink to="/cart" class="link">
         <button aria-label="Cart">
           <svg class="icon" viewBox="0 0 24 24">
             <path :d="mdiCartHeart" />
           </svg>
         </button>
+        </NuxtLink>
       </div>
     </div>
   </nav>

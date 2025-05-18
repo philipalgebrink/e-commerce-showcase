@@ -34,25 +34,28 @@
         <p class="description">{{ product.description }}</p>
         <p v-if="!product.isAvailable" class="unavailable">Currently Unavailable</p>
         <p class="price">{{ product.price }} {{ product.currency }}</p>
+        <div v-if="addedToCart" class="added-message">
+          Added to cart! <NuxtLink to="/cart" class="view-cart-link">View Cart</NuxtLink>
+        </div>
         <div class="add-to-cart">
-        <select
-          v-if="product.variants && product.variants.length > 0"
-          v-model="selectedVariantId"
-          class="variant-select"
-          :disabled="!product.isAvailable"
-        >
-          <option v-for="variant in product.variants" :key="variant.id" :value="variant.id">
-            {{ variant.name }} ({{ variant.size }}, {{ variant.color }})
-            <span v-if="variant.colorCode" :style="{ backgroundColor: variant.colorCode }" class="color-swatch"></span>
-          </option>
-        </select>
-        <button
-          @click="addToCart"
-          :disabled="!selectedVariantId || !product.isAvailable"
-          class="addtocart-button"
-        >
-          Add To Cart
-        </button>
+          <select
+            v-if="product.variants && product.variants.length > 0"
+            v-model="selectedVariantId"
+            class="variant-select"
+            :disabled="!product.isAvailable"
+          >
+            <option v-for="variant in product.variants" :key="variant.id" :value="variant.id">
+              {{ variant.name }} ({{ variant.size }}, {{ variant.color }})
+              <span v-if="variant.colorCode" :style="{ backgroundColor: variant.colorCode }" class="color-swatch"></span>
+            </option>
+          </select>
+          <button
+            @click="addToCart"
+            :disabled="!selectedVariantId || !product.isAvailable"
+            class="addtocart-button"
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>
@@ -61,6 +64,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useCartStore } from '~/stores/cart';
 import type { Product } from '~/types/product';
 
 const route = useRoute();
@@ -68,9 +72,12 @@ const product = ref<Product | null>(null);
 const error = ref<string | null>(null);
 const selectedVariantId = ref<string>('');
 const placeholderImage = 'https://via.placeholder.com/150';
+const addedToCart = ref(false);
 
 const selectedImageIndex = ref(0);
 const selectedImageUrl = ref('');
+
+const cartStore = useCartStore();
 
 watch([product, selectedImageIndex], () => {
   if (product.value && product.value.imageUrls) {
@@ -106,8 +113,26 @@ const fetchProduct = async (id: string) => {
   }
 };
 
-fetchProduct(route.params.id as string);
+const addToCart = () => {
+  if (!product.value || !selectedVariantId.value) return;
 
+  cartStore.addItem({
+    productId: product.value.id,
+    variantId: selectedVariantId.value,
+    quantity: 1,
+    name: product.value.name,
+    price: product.value.price,
+    currency: product.value.currency,
+    imageUrl: product.value.imageUrls[0],
+  });
+
+  addedToCart.value = true;
+  setTimeout(() => {
+    addedToCart.value = false;
+  }, 3000);
+};
+
+fetchProduct(route.params.id as string);
 </script>
 
 <style scoped>
@@ -227,6 +252,22 @@ fetchProduct(route.params.id as string);
   gap: 1rem;
 }
 
+.added-message {
+  color: #4caf50;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.view-cart-link {
+  color: #ff9800;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.view-cart-link:hover {
+  text-decoration: underline;
+}
+
 .unavailable {
   color: #ff0000;
   font-weight: bold;
@@ -256,7 +297,7 @@ fetchProduct(route.params.id as string);
   display: inline-block;
   width: 15px;
   height: 15px;
-  border-radius: 50%;
+  border-radius: eleventh;
   margin-left: 5px;
   vertical-align: middle;
   border: 1px solid #ccc;
@@ -336,6 +377,16 @@ fetchProduct(route.params.id as string);
   .product-page {
     padding: 1rem;
     min-height: auto;
+  }
+
+  .add-to-cart {
+    flex-direction: column;
+  }
+
+  .variant-select,
+  .addtocart-button {
+    width: 100%;
+    max-width: 100%;
   }
 }
 </style>
