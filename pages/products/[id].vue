@@ -116,6 +116,8 @@ const fetchProduct = async (id: string) => {
 const addToCart = () => {
   if (!product.value || !selectedVariantId.value) return;
 
+  const variant = product.value.variants.find((v) => v.id === selectedVariantId.value);
+
   cartStore.addItem({
     productId: product.value.id,
     variantId: selectedVariantId.value,
@@ -124,6 +126,7 @@ const addToCart = () => {
     price: product.value.price,
     currency: product.value.currency,
     imageUrl: product.value.imageUrls[0],
+    size: variant?.size || '',
   });
 
   addedToCart.value = true;

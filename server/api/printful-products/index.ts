@@ -44,7 +44,6 @@ export default defineEventHandler(async () => {
             name: product.name,
             price: 0,
             currency: 'SEK',
-            stock: 0,
             imageUrls: [frontImage, backImage],
             type: product.main_category_id || 'Unknown',
             variantId: '',
@@ -56,8 +55,6 @@ export default defineEventHandler(async () => {
 
         syncVariants.forEach((variant: any) => {
           console.log(`Variant ${variant.id} (${variant.name}) Details:`, {
-            stock: variant.stock || 0,
-            in_stock: variant.in_stock || 'N/A',
             availability_status: variant.availability_status || 'N/A',
           });
         });
@@ -69,7 +66,6 @@ export default defineEventHandler(async () => {
           name: product.name,
           price: variant.retail_price || 0,
           currency: variant.currency || 'SEK',
-          stock: variant.stock || 0,
           imageUrls: [frontImage, backImage],
           type: variant.product?.type || 'Unknown',
           variantId: String(variant.id),
@@ -80,7 +76,7 @@ export default defineEventHandler(async () => {
             color: variant.color || '',
             colorCode: variant.color_code || '',
           })),
-          isAvailable: variant.in_stock || true,
+          isAvailable: true,
           description: productDescriptions[product.id] || 'No description available.',
         };
       } catch (error) {
@@ -90,7 +86,6 @@ export default defineEventHandler(async () => {
           name: product.name,
           price: 0,
           currency: 'SEK',
-          stock: 0,
           imageUrls: [`/images/products/${product.id}/front.png`, `/images/products/${product.id}/back.png`],
           type: product.main_category_id || 'Unknown',
           variantId: '',
