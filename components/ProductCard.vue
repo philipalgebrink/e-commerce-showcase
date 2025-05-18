@@ -4,7 +4,6 @@
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p class="price">{{ product.price }} {{ product.currency }}</p>
-    <p class="stock">In Stock: {{ product.stock }}</p>
   </div>
 </template>
 
@@ -35,9 +34,5 @@ const placeholderImage = 'https://via.placeholder.com/150';
 .price {
   font-weight: bold;
   color: #00ff00;
-}
-
-.stock {
-  color: #ccc;
 }
 </style>
