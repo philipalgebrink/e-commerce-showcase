@@ -64,6 +64,7 @@ defineExpose({ isAtTop });
   right: 0;
   z-index: 10;
   transition: opacity 0.3s ease;
+  background-color: black;
 }
 
 .container {

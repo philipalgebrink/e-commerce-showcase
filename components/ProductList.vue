@@ -31,7 +31,7 @@ onMounted(async () => {
 
 .content h1 {
   font-size: 2.5rem;
-  margin: 2rem 0;
+  margin: 4rem 0 2rem 0;
 }
 
 .product-list {
