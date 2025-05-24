@@ -37,3 +37,13 @@ Follow these steps to set up the project locally:
 > yarn install
 3. **Start app**:
 > yarn dev
+
+
+## Contact
+For questions or feedback, reach out to:
+
+> GitHub: philipalgebrink
+> Discord: king0777
+> Email: philipalgebrink.pa@gmail.com
+
+
