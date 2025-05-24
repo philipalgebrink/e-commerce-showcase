@@ -42,8 +42,8 @@ Follow these steps to set up the project locally:
 ## Contact
 For questions or feedback, reach out to:
 
-> GitHub: philipalgebrink
-> Discord: king0777
-> Email: philipalgebrink.pa@gmail.com
+- GitHub: philipalgebrink
+- Discord: king0777
+- Email: philipalgebrink.pa@gmail.com
 
 
