@@ -1,5 +1,7 @@
 # E-Commerce Showcase
 
+# CHECK IT OUT LIVE: http://mostvalue.se/
+
 Welcome to the **E-Commerce Showcase**, a modern and responsive web application designed to demonstrate a fully functional e-commerce platform. This project serves as a portfolio piece to showcase skills in front-end and back-end development, responsive design, and e-commerce functionality.
 
 ## Table of Contents
