@@ -1,75 +1,39 @@
-# Nuxt Minimal Starter
+# E-Commerce Showcase
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to the **E-Commerce Showcase**, a modern and responsive web application designed to demonstrate a fully functional e-commerce platform. This project serves as a portfolio piece to showcase skills in front-end and back-end development, responsive design, and e-commerce functionality.
 
-## Setup
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-Make sure to install dependencies:
+## Features
+- **Product Listings**: Browse a catalog of products with images, descriptions, and prices.
+- **Shopping Cart**: Add, remove, and update items in a user-friendly cart.
+- **Checkout Process**: Simulated checkout flow with form validation.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Search & Filters**: Easily find products with search functionality and category filters.
+- **User Authentication**: (Optional) Login and registration system for personalized shopping.
+- **Admin Dashboard**: (Optional) Manage products, orders, and users (if implemented).
 
-```bash
-# npm
-npm install
+## Technologies
+- **Frontend**: HTML, CSS, JavaScript, [Framework, e.g., React, Vue.js, or vanilla JS]
+- **Backend**: [e.g., Node.js with Express, or none if static]
+- **Database**: [e.g., MongoDB, Firebase, or none if static]
+- **Styling**: [e.g., Tailwind CSS, Bootstrap, or custom CSS]
+- **Other Tools**: [e.g., Webpack, Vite, or any APIs used]
 
-# pnpm
-pnpm install
+## Installation
+Follow these steps to set up the project locally:
 
-# yarn
+1. **Clone the repository**:
+git clone https://github.com/philipalgebrink/e-commerce-showcase.git
+cd e-commerce-showcase
+2. **Install dependencies**:
 yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
+3. **Start app**:
 yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
